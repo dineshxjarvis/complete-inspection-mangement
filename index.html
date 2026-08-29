@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRATA — Coal-Mining Inspection Governance & Planning Platform (Workspace 01)</title>
+  
+  <!-- Modern Enterprise Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Global Header Navbar -->
+    <header class="global-header">
+      <div class="header-left">
+        <div class="brand-wrapper" onclick="strata.navigateTo('01')">
+          <div class="brand-emblem">ST</div>
+          <div class="brand-titles">
+            <span class="brand-name">STRATA</span>
+            <span class="brand-sub">Mining Governance &bull; DGMS / CIL</span>
+          </div>
+        </div>
+
+        <div class="header-divider"></div>
+
+        <div class="workspace-badge">
+          <div class="workspace-dot"></div>
+          <span class="workspace-title">Workspace 01: Inspection Governance & Planning</span>
+        </div>
+      </div>
+
+      <!-- Center Search & Quick Jump -->
+      <div class="header-center">
+        <div class="global-search-container">
+          <span class="global-search-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" class="global-search-input" placeholder="Search Regulation, Inspection ID, Recommendation, Mine... (Ctrl+K)" onfocus="strata.openQuickNavigator()">
+        </div>
+      </div>
+
+      <!-- Header Right: Quick Switcher, Notifications & User -->
+      <div class="header-right">
+        <button class="quick-screen-btn" onclick="strata.openQuickNavigator()" title="Jump to any screen from Screen 01 to Screen 22">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <span>Screen Navigator (01—22)</span>
+        </button>
+
+        <button class="header-icon-btn" onclick="strata.showToast('2 Statutory Alerts: 1 Overdue SCAMP audit &bull; 1 Telemetry alarm at Mine A2', 'warning')" title="Notifications">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div class="notif-pulse"></div>
+        </button>
+
+        <div class="user-profile-pill" id="header-user-pill" onclick="strata.showToast('User: S. K. Mukherjee | Authorized General Manager (Safety & Governance)', 'info')">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </header>
+
+    <!-- Scope Hierarchy & Authority Indicator Bar -->
+    <div class="scope-header-bar">
+      <div class="scope-hierarchy-display">
+        <span class="scope-label">Scope:</span>
+        
+        <div class="scope-crumb">
+          <select id="scope-holding" onchange="strata.showToast('Scope updated: ' + this.value, 'info')">
+            <option>Coal India Limited (CIL)</option>
+            <option>SCCL (Singareni)</option>
+          </select>
+        </div>
+
+        <span class="scope-arrow">&rsaquo;</span>
+
+        <div class="scope-crumb">
+          <select id="scope-subsidiary" onchange="strata.showToast('Subsidiary updated: ' + this.value, 'info')">
+            <option>Eastern Coalfields Limited (ECL)</option>
+            <option>Bharat Coking Coal Limited (BCCL)</option>
+            <option>Central Coalfields Limited (CCL)</option>
+            <option>South Eastern Coalfields Limited (SECL)</option>
+          </select>
+        </div>
+
+        <span class="scope-arrow">&rsaquo;</span>
+
+        <div class="scope-crumb">
+          <select id="scope-area" onchange="strata.showToast('Area updated: ' + this.value, 'info')">
+            <option>Area 01 (Sripur-Kenda)</option>
+            <option>Area 02 (Salanpur)</option>
+            <option>Area 03 (Kajora)</option>
+          </select>
+        </div>
+
+        <span class="scope-arrow">&rsaquo;</span>
+
+        <div class="scope-crumb">
+          <select id="scope-mine" onchange="strata.showToast('Target Colliery: ' + this.value, 'info')">
+            <option>Mine A2 (Deep Underground Seam VII)</option>
+            <option>Mine B1 (Inclined Mine)</option>
+            <option>Mine C4 (Opencast Pit 2)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="authority-strip-pill">
+        <span class="authority-badge">AUTHORITY: INTERNAL GOVERNANCE &bull; DGMS STATUTORY</span>
+        <span class="system-clock" id="system-clock">29 Aug 2026 | 10:45:00 IST</span>
+      </div>
+    </div>
+
+    <!-- Workspace Body Layout -->
+    <div class="workspace-body">
+      
+      <!-- Left Sidebar Navigation -->
+      <aside class="left-sidebar">
+        <div class="sidebar-section-title">Governance & Planning</div>
+        <ul class="sidebar-nav-list" id="sidebar-nav">
+          <!-- Populated by StrataApp -->
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="governance-spine-indicator">
+            <span>GOVERNANCE SPINE:</span><br>
+            Authority &rarr; Track &rarr; Type &rarr; Scope &rarr; Status &rarr; Auditability
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Dynamic Content Viewport -->
+      <main class="main-viewport" id="screen-content-viewport">
+        <!-- Rendered dynamically by current active screen (Screens 01 through 22) -->
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Global Modal Container -->
+  <div class="modal-backdrop" id="global-modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Modal Title</h3>
+        <button class="modal-close-btn" onclick="strata.closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Modal body content -->
+      </div>
+      <div class="modal-footer" id="modal-footer">
+        <!-- Modal action buttons -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Side Drawer Container -->
+  <div class="drawer-overlay" id="global-drawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title" id="drawer-title">Drawer Panel</h3>
+      <button class="modal-close-btn" style="color:#FFF;" onclick="strata.closeDrawer()">&times;</button>
+    </div>
+    <div class="drawer-body" id="drawer-body">
+      <!-- Drawer content -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Core Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
